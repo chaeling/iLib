@@ -50,7 +50,7 @@ public class BookInfoXMLHandler extends DefaultHandler {
 			}
 			else if(id.equals("210")) {
 				if(label.equals("c"))
-					bookBean.press.add(new String(ch, start, length).toString());
+					bookBean.press.add(new String(ch, start, length).toString());//.toString();
 			}
 		}
 	}
@@ -69,5 +69,4 @@ public class BookInfoXMLHandler extends DefaultHandler {
 	public void endDocument() throws SAXException {
 		System.out.println("--book details parsing end--");
 	}
-	
 }
