@@ -9,7 +9,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class BooksInfoXMLHandler extends DefaultHandler {
 	String tagName;
-	Books booksBean;
+	Books booksBean = new Books();
 	
 	String id;
 	String label;
@@ -44,13 +44,18 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 		if(tagName.equals("doc_number")) {
 			System.out.println("--start doc_number parsing--");
 			tempBook.doc_number = Integer.parseInt(new String(ch, start, length));
+			System.out.println("doc_number = " + tempBook.doc_number);
 		}
 		else if(tagName.equals("subfield")) {
 			if(id.equals("200")) {
-				if(label.equals("a"))
+				if(label.equals("a")) {
 					tempBook.bookName = new String(ch, start, length);
-				if(label.equals("f"))
+					System.out.println("tempBook.bookName = " + tempBook.bookName);
+				}
+				if(label.equals("f")) {
 					tempBook.author = new String(ch, start, length);
+					System.out.println("tempBook.author = " + tempBook.author);
+				}
 			}
 			else if(id.equals("210")) {
 				if(label.equals("c"))
@@ -63,7 +68,6 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		if(tagName.equals("doc_number")) {
-			System.out.println("doc_number = " + tempBook.doc_number);
 			System.out.println("--doc_number parsing end--");
 		}
 			
@@ -73,9 +77,8 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 		}
 		if(tagName.equals("varfield"))
 			tagName = "";
-		if(tagName.equals("metadata")) {
+		if(tagName.equals("record")) {
 			booksBean.books.add(tempBook);
-			tempBook = null;
 		}
 	}
 
