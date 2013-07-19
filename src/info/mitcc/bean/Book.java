@@ -7,10 +7,11 @@ public class Book {
 	public String press;
 	
 	public Book() {
-
+		
 	}
-
+	
 	public Book(int doc_number, String bookName, String author, String press) {
+		super();
 		this.doc_number = doc_number;
 		this.bookName = bookName;
 		this.author = author;
@@ -47,5 +48,6 @@ public class Book {
 
 	public void setPress(String press) {
 		this.press = press;
-	}
+	}	
+	
 }

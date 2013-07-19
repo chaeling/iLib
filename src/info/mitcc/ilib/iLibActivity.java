@@ -1,14 +1,13 @@
 package info.mitcc.ilib;
 
+import info.mitcc.bean.Books;
+import info.mitcc.bean.SetNumberBean;
+import info.mitcc.sax.BooksInfoXMLParse;
+import info.mitcc.sax.SetNumberXMLParse;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import info.mitcc.bean.BookBean;
-import info.mitcc.bean.Books;
-import info.mitcc.bean.SetNumberBean;
-import info.mitcc.sax.BookInfoXMLParse;
-import info.mitcc.sax.BooksInfoXMLParse;
-import info.mitcc.sax.SetNumberXMLParse;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,10 +27,7 @@ public class iLibActivity extends Activity {
 	TextView tv;
 	ListView listView;
 	ArrayAdapter<String> listAdapter;
-	
-	BookBean bookBean;
-//	Books newBookBean;
-	
+	Books books;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +42,7 @@ public class iLibActivity extends Activity {
 		listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         
         searchBtn.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View v) {
 				listAdapter.clear();
 				String getSetNumberUrl = null;
@@ -56,30 +52,13 @@ public class iLibActivity extends Activity {
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
-								
-//				String set_number = HttpClientConnector.getStringByUrl(getSetNumberUrl);
 				SetNumberBean setNumberBean = SetNumberXMLParse.parse(getSetNumberUrl);
-				
-//				String getDocNumberUrl = "http://10.10.16.94/X?op=present&set_no=" + setNumberBean.getSet_number()
-//						+ "&set_entry=000000001,000000002,03,04,05&format=marc";
-//				String doc_number = HttpClientConnector.getStringByUrl(getDocNumberUrl);
-//				docNumberBean = DocNumberXMLParse.parse(doc_number);
-				
+
 				String getBooksInfoUrl = "http://10.10.16.94/X?op=present&set_no=" + setNumberBean.getSet_number()
 						+ "&set_entry=000000001,000000002,03,04,05&format=marc";
-//				String booksInfosXml = HttpClientConnector.getStringByUrl(getBooksInfoUrl);
-//				System.out.println("booksInfosXml = " + booksInfosXml);
-				
-				bookBean = BookInfoXMLParse.parse(getBooksInfoUrl);
-//				newBookBean = BooksInfoXMLParse.parse(getBooksInfoUrl);
-				
-//				listAdapter.add("set_number : " + setNumberBean.getSet_number());
-				
-				for(int i = 0; i < bookBean.getDoc_number().size(); i++) 
-					listAdapter.add("Name[" + i + "] : " + bookBean.getBookName().get(i));
-				
-//				for(int i = 0; i <newBookBean.books.size(); i++)
-//					listAdapter.add("Name[" + i + "] : " + newBookBean.books.get(i).bookName);
+				books = BooksInfoXMLParse.parse(getBooksInfoUrl);
+				for(int i = 0; i < books.books.size(); i++)
+					listAdapter.add("[" + books.books.get(i).bookName +"]");
 			}
 		});
         listView.setAdapter(listAdapter);
@@ -89,8 +68,7 @@ public class iLibActivity extends Activity {
 					long id) {
 				Intent intent = new Intent(iLibActivity.this, DetailsActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra("doc_number", bookBean.getAuthor().get(position).toString());
-//				intent.putExtra("doc_number", bookBean.books.get(position).bookName);
+				intent.putExtra("doc_number", books.getBooks().get(position).author);
 				startActivity(intent);
 			}
 		});

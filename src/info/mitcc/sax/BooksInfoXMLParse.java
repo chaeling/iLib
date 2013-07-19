@@ -15,10 +15,10 @@ import info.mitcc.bean.Books;
 public class BooksInfoXMLParse {
 	public static Books parse(String xmlUrl) {
 		SAXParserFactory spf = SAXParserFactory.newInstance();
-		Books book = new Books();
+		Books newBookBean = new Books();
 		try {
 			XMLReader xmlReader = spf.newSAXParser().getXMLReader();
-			BooksInfoXMLHandler handler = new BooksInfoXMLHandler(book);
+			BooksInfoXMLHandler handler = new BooksInfoXMLHandler(newBookBean);
 			xmlReader.setContentHandler(handler);
 			
 			URL url = new URL(xmlUrl);
@@ -30,6 +30,6 @@ public class BooksInfoXMLParse {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return book;
+		return newBookBean;
 	}
 }

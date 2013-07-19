@@ -23,7 +23,6 @@ public class BookInfoXMLParse {
 
 			URL url = new URL(xmlUrl);
 			xmlReader.parse(new InputSource(url.openStream()));
-
 //			xmlReader.parse(new InputSource(new StringReader(xmlUrl)));//解析中文会出现乱码
 			
 		} catch (ParserConfigurationException e) {
