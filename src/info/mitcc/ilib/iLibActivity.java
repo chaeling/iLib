@@ -55,10 +55,10 @@ public class iLibActivity extends Activity {
 				SetNumberBean setNumberBean = SetNumberXMLParse.parse(getSetNumberUrl);
 
 				String getBooksInfoUrl = "http://10.10.16.94/X?op=present&set_no=" + setNumberBean.getSet_number()
-						+ "&set_entry=000000001,000000002,03,04,05&format=marc";
+						+ "&set_entry=01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20&format=marc";
 				books = BooksInfoXMLParse.parse(getBooksInfoUrl);
 				for(int i = 0; i < books.books.size(); i++)
-					listAdapter.add("[" + books.books.get(i).bookName +"]");
+					listAdapter.add(books.books.get(i).bookName);
 			}
 		});
         listView.setAdapter(listAdapter);
@@ -68,7 +68,7 @@ public class iLibActivity extends Activity {
 					long id) {
 				Intent intent = new Intent(iLibActivity.this, DetailsActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra("doc_number", books.getBooks().get(position).author);
+				intent.putExtra("book", books.getBooks().get(position));
 				startActivity(intent);
 			}
 		});

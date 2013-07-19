@@ -1,8 +1,10 @@
 package info.mitcc.bean;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Books {
+public class Books implements Serializable {
+	private static final long serialVersionUID = -3254710560082073499L;
 	public List<Book> books = new ArrayList<Book>();
 
 	public Books() {

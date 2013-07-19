@@ -1,6 +1,9 @@
 package info.mitcc.bean;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
+	private static final long serialVersionUID = -6043269205539327788L;
 	public int doc_number;
 	public String bookName;
 	public String author;
