@@ -49,18 +49,16 @@ public class iLibActivity extends Activity {
 			
 			public void onClick(View v) {
 				listAdapter.clear();
-//				String getSetNumberUrl = "http://10.10.16.94/X?op=find&base=zju01&code=wrd&request="
-//						+ searchContent.getText().toString();
-				StringBuilder getSetNumberUrl = new StringBuilder();
+				String getSetNumberUrl = null;
 				try {
-					getSetNumberUrl.append("http://10.10.16.94/X?op=find&base=zju01&code=wrd&request=")
-					.append(URLEncoder.encode(searchContent.getText().toString(), "UTF-8"));
+					getSetNumberUrl = "http://10.10.16.94/X?op=find&base=zju01&code=wrd&request="
+							+ URLEncoder.encode(searchContent.getText().toString(), "utf-8");
 				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+								
 //				String set_number = HttpClientConnector.getStringByUrl(getSetNumberUrl);
-				SetNumberBean setNumberBean = SetNumberXMLParse.parse(getSetNumberUrl.toString());
+				SetNumberBean setNumberBean = SetNumberXMLParse.parse(getSetNumberUrl);
 				
 //				String getDocNumberUrl = "http://10.10.16.94/X?op=present&set_no=" + setNumberBean.getSet_number()
 //						+ "&set_entry=000000001,000000002,03,04,05&format=marc";
@@ -76,10 +74,6 @@ public class iLibActivity extends Activity {
 //				newBookBean = BooksInfoXMLParse.parse(getBooksInfoUrl);
 				
 //				listAdapter.add("set_number : " + setNumberBean.getSet_number());
-				
-//				for(int i = 0; i < docNumberBean.getDoc_number().size(); i++) {
-//					listAdapter.add("doc_number[" + i + "] : " + docNumberBean.getDoc_number().get(i));
-//				}
 				
 				for(int i = 0; i < bookBean.getDoc_number().size(); i++) 
 					listAdapter.add("Name[" + i + "] : " + bookBean.getBookName().get(i));
