@@ -55,7 +55,7 @@ public class iLibActivity extends Activity {
 				SetNumberBean setNumberBean = SetNumberXMLParse.parse(getSetNumberUrl);
 
 				String getBooksInfoUrl = "http://10.10.16.94/X?op=present&set_no=" + setNumberBean.getSet_number()
-						+ "&set_entry=01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20&format=marc";
+						+ "&set_entry=01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30&format=marc";
 				books = BooksInfoXMLParse.parse(getBooksInfoUrl);
 				for(int i = 0; i < books.books.size(); i++)
 					listAdapter.add(books.books.get(i).bookName);
