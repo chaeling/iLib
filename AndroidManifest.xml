@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name="DetailsActivity" android:permission="android.permission.INTERNET"></activity>
+        <activity android:name="BookStatusActivity" android:permission="android.permission.INTERNET"></activity>
     </application>
 
 </manifest>
