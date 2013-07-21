@@ -31,18 +31,8 @@ public class BookStatusActivity extends Activity {
 		statusAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		
 		for(int i = 0; i < list.size(); i++) {
-//			if(list.get(i).subLibrary.equals("总馆采访"))
-//				statusAdapter.add("总馆采访");
-//			if(list.get(i).subLibrary.equals("玉泉理工阅览室"))
-//				statusAdapter.add("玉泉理工阅览室");
-//			if(list.get(i).subLibrary.equals("玉泉样本书库"))
-//				statusAdapter.add("玉泉样本书库");
-//			if(list.get(i).subLibrary.equals("浙江大学图书馆存储馆"))
-//				statusAdapter.add("浙江大学图书馆存储馆");
-//			if(list.get(i).subLibrary.equals("玉泉工具书阅览室"))
-//				statusAdapter.add("玉泉工具书阅览室");
-//			else {
-//				statusAdapter.add("分馆 : " + list.get(i).subLibrary);
+			statusAdapter.add("分馆【" + i + "】: " + list.get(i).subLibrary);
+//			if(list.get(i).subLibrary.equals("玉泉流通书库") || list.get(i).equals("紫金港基础流通书库")) {
 //				statusAdapter.add("索书号 : " + list.get(i).collection);
 //				/* 是否可借 */
 //				if(list.get(i).itemStatus.equals("12"))
@@ -55,9 +45,11 @@ public class BookStatusActivity extends Activity {
 //				else
 //					statusAdapter.add("是否已经借出 : 尚未借出");
 //			}
-			statusAdapter.add("分馆【" + i + "】: " + list.get(i).subLibrary);
-			if(list.get(i).subLibrary.equals("玉泉流通书库") || list.get(i).equals("紫金港基础流通书库")) {
-				statusAdapter.add("索书号 : " + list.get(i).collection);
+			if(list.get(i).loanStatus != null) {
+				if(list.get(i).collection == null)
+					statusAdapter.add("索书号 : 无");
+				else
+					statusAdapter.add("索书号 : " + list.get(i).collection);
 				/* 是否可借 */
 				if(list.get(i).itemStatus.equals("12"))
 					statusAdapter.add("是否可借 : 可借");
