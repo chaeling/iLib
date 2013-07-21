@@ -3,9 +3,6 @@ package info.mitcc.bean;
 import java.io.Serializable;
 
 public class BookStatus implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8633806876367065949L;
 	public String subLibrary;
 	public String collection;

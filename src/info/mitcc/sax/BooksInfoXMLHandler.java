@@ -75,6 +75,6 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 
 	@Override
 	public void endDocument() throws SAXException {
-		System.out.println("--newbook parsing end--");
+		
 	}
 }
