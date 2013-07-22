@@ -1,7 +1,8 @@
 package info.mitcc.sax;
 
+import java.util.*;
+
 import info.mitcc.bean.Book;
-import info.mitcc.bean.Books;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -9,8 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class BooksInfoXMLHandler extends DefaultHandler {
 	String tagName;	
-	Books booksBean;
-	
+	List<Book> booksList;
 	String id;
 	String label;
 	Book tempBook;
@@ -19,9 +19,12 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 		
 	}
 
-	public BooksInfoXMLHandler(Books newBookBean) {
-		this.booksBean = newBookBean;
+	public BooksInfoXMLHandler(List<Book> booksList) {
+		super();
+		this.booksList = booksList;
 	}
+
+
 
 	@Override
 	public void startDocument() throws SAXException {
@@ -68,7 +71,7 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		if(localName.equals("record")) {
-			booksBean.books.add(tempBook);
+			booksList.add(tempBook);
 		}
 		tagName = "";
 	}

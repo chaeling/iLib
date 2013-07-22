@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,9 @@ public class DetailsActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.details);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.mytitle);
 		
 		listView = (ListView) findViewById(R.id.detailsListView);
 		detailsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
@@ -35,12 +38,6 @@ public class DetailsActivity extends Activity {
 		detailsAdapter.add("³ö°æÉç : " + book.press);
 		
 		listView.setAdapter(detailsAdapter);
-		
-//		String getBookStatusUrl = "http://10.10.16.94/X?op=item-data&base=zju01&doc_number=" 
-//				+ book.doc_number;
-//		bookStatus = BookStatusXMLParse.parse(getBookStatusUrl);
-
-		
 		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 

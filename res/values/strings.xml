@@ -2,6 +2,7 @@
 <resources>
 
     <string name="hello">Welcome to ZJU Library!</string>
-    <string name="app_name">iLib</string>
+    <string name="app_name">iLibrary</string>
+    <string name="title">Zhejiang University Library</string>
 
 </resources>

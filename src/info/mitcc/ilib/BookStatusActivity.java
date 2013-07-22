@@ -7,6 +7,7 @@ import info.mitcc.sax.BooksStatusXMLParse;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,7 +20,9 @@ public class BookStatusActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.status);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.mytitle);
 		
 		Intent intent = getIntent();
 		doc_number =(Integer) intent.getSerializableExtra("status");
