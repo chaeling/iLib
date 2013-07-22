@@ -24,8 +24,6 @@ public class BooksInfoXMLHandler extends DefaultHandler {
 		this.booksList = booksList;
 	}
 
-
-
 	@Override
 	public void startDocument() throws SAXException {
 		

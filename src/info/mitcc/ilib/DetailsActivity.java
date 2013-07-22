@@ -1,16 +1,15 @@
 package info.mitcc.ilib;
 
-import java.util.*;
-
 import info.mitcc.bean.Book;
 import info.mitcc.bean.BookStatus;
+
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.MotionEvent;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,16 +37,16 @@ public class DetailsActivity extends Activity {
 		detailsAdapter.add("³ö°æÉç : " + book.press);
 		
 		listView.setAdapter(detailsAdapter);
-		
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				Intent intent = new Intent(DetailsActivity.this, BookStatusActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.putExtra("status", book.doc_number);
-				startActivity(intent);
-			}
-		});
 	}
+
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			Intent intent = new Intent(DetailsActivity.this, BookStatusActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.putExtra("status", book.doc_number);
+			startActivity(intent);
+		}
+		return true;
+	}	
 }
