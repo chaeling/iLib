@@ -12,7 +12,8 @@
 		android:label="@string/title" >
         <activity
             android:name=".iLibActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:theme="@style/customTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

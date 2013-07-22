@@ -4,9 +4,9 @@
     android:id="@+id/myTitle"
     android:textStyle="bold"
     android:text="@string/title"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_vertical|center_horizontal"
     android:layout_gravity="center"
-    android:textColor="#00FF00"
+    android:textColor="@color/titleTextColor"
     />
