@@ -2,4 +2,6 @@
 <resources>
     <color name="titleBackgroundColor">#000000</color>
 	<color name="titleTextColor">#00FF00</color>
+	<color name="listViewTextColor_1">#00FF00</color>
+	<color name="listViewTextColor_2">#0000CC</color>
 </resources>

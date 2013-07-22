@@ -31,7 +31,7 @@ public class BookStatusActivity extends Activity {
 		list = BooksStatusXMLParse.parse(getBookStatusUrl);
 		
 		statusListView = (ListView) findViewById(R.id.statusList);
-		statusAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+		statusAdapter = new ArrayAdapter<String>(this, R.layout.list_item_1);
 		
 		for(int i = 0; i < list.size(); i++) {
 			statusAdapter.add("¡¾" + (i + 1) + "¡¿" + "·Ö¹Ý: " + list.get(i).subLibrary);

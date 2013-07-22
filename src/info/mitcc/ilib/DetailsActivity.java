@@ -27,7 +27,7 @@ public class DetailsActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.mytitle);
 		
 		listView = (ListView) findViewById(R.id.detailsListView);
-		detailsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+		detailsAdapter = new ArrayAdapter<String>(this, R.layout.list_item_2);
 		
 		Intent intent = getIntent();
 		book = (Book) intent.getSerializableExtra("book");
