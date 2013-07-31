@@ -4,13 +4,16 @@ import info.mitcc.bean.Book;
 import info.mitcc.bean.SetNumberBean;
 import info.mitcc.sax.BooksInfoXMLParse;
 import info.mitcc.sax.SetNumberXMLParse;
+import info.mitcc.sqlite.MySQLiteHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -30,6 +33,9 @@ public class iLibActivity extends Activity {
 	ListView listView;
 	ArrayAdapter<String> listAdapter;
 	List<Book> bookList;
+	private SQLiteDatabase sqlitedb;
+	private MySQLiteHelper mySQLiteHelper;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,15 +50,23 @@ public class iLibActivity extends Activity {
         
         listView = (ListView) findViewById(R.id.mainListView);
 		listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        
+        mySQLiteHelper = new MySQLiteHelper(this);
+		
         searchBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				listAdapter.clear();
 				String getSetNumberUrl = null;
+				sqlitedb = mySQLiteHelper.getWritableDatabase();
 				try {
+					String searchStr = searchContent.getText().toString();
+					if(!searchStr.equals("")) {
+						ContentValues cv = new ContentValues();
+						cv.put(MySQLiteHelper.SEARCH_RECORD, searchStr);
+						sqlitedb.insert(MySQLiteHelper.TABLE_NAME, null, cv);
+					}
 					getSetNumberUrl = "http://10.10.16.94/X?op=find&base=zju01&code=wrd&request="
-							+ URLEncoder.encode(searchContent.getText().toString(), "utf-8");
+							+ URLEncoder.encode(searchStr, "utf-8");
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}

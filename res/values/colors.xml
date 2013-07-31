@@ -4,4 +4,9 @@
 	<color name="titleTextColor">#00FF00</color>
 	<color name="listViewTextColor_1">#00FF00</color>
 	<color name="listViewTextColor_2">#0000CC</color>
+	<color name="unfocused">#55A373</color>
+	<color name="pressed">#0DE4EB</color>
+	<color name="white">#FFFFFF</color>
+	<color name="selected">#E81FEB</color>
+	<color name="focused">#F59815</color>
 </resources>

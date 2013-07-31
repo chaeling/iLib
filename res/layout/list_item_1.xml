@@ -2,6 +2,7 @@
 <!-- https://github.com/android/platform_frameworks_base/blob/master/core/res/res/layout/simple_list_item_1.xml -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/text1"
+    android:background="@drawable/listview_bg"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceLarge"
