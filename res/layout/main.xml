@@ -16,8 +16,8 @@
     <RelativeLayout 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-        <EditText 
-            android:id="@+id/search_content"
+        <AutoCompleteTextView 
+            android:id="@+id/autocomlete_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -28,19 +28,14 @@
             android:id="@+id/submitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/search_content"
+            android:layout_alignBottom="@+id/autocomlete_tv"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/search_content"
+            android:layout_toRightOf="@+id/autocomlete_tv"
             android:text="Go"
             />
     </RelativeLayout>
     
-    <TextView 
-        android:id="@+id/tv"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        />
 	<ListView 
 	    android:id="@+id/mainListView"
 	    android:layout_width="fill_parent"

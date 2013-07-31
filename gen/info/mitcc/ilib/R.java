@@ -29,14 +29,13 @@ public final class R {
         public static final int zj=0x7f020004;
     }
     public static final class id {
+        public static final int autocomlete_tv=0x7f070002;
         public static final int detailsListView=0x7f070000;
-        public static final int mainListView=0x7f070005;
-        public static final int myTitle=0x7f070006;
-        public static final int search_content=0x7f070002;
-        public static final int statusList=0x7f070007;
+        public static final int mainListView=0x7f070004;
+        public static final int myTitle=0x7f070005;
+        public static final int statusList=0x7f070006;
         public static final int submitBtn=0x7f070003;
         public static final int text1=0x7f070001;
-        public static final int tv=0x7f070004;
     }
     public static final class layout {
         public static final int details=0x7f030000;

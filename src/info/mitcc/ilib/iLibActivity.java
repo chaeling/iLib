@@ -13,23 +13,24 @@ import java.util.List;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class iLibActivity extends Activity {
 	Button searchBtn;
-	EditText searchContent;
-	TextView tv;
+//	EditText searchContent;
+	AutoCompleteTextView searchContent;
+	ArrayAdapter<String> searchRecords;
 	ListView listView;
 	ArrayAdapter<String> listAdapter;
 	List<Book> bookList;
@@ -45,19 +46,31 @@ public class iLibActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.mytitle);
         
         searchBtn = (Button) findViewById(R.id.submitBtn);
-        searchContent = (EditText) findViewById(R.id.search_content);
-        tv = (TextView) findViewById(R.id.tv);
-        
+        searchContent = (AutoCompleteTextView) findViewById(R.id.autocomlete_tv);
+        searchRecords = new ArrayAdapter<String>(this, R.layout.list_item_1);
         listView = (ListView) findViewById(R.id.mainListView);
 		listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         mySQLiteHelper = new MySQLiteHelper(this);
-		
+        sqlitedb = mySQLiteHelper.getWritableDatabase();
+        
+        try {
+			searchRecords.clear();
+			Cursor cursor = sqlitedb.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_NAME, null);
+			if(cursor != null) {
+				while(cursor.moveToNext()) {
+					searchRecords.add(cursor.getString(1));
+				}
+			}
+			searchContent.setAdapter(searchRecords);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
         searchBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				listAdapter.clear();
 				String getSetNumberUrl = null;
-				sqlitedb = mySQLiteHelper.getWritableDatabase();
+				
 				try {
 					String searchStr = searchContent.getText().toString();
 					if(!searchStr.equals("")) {
