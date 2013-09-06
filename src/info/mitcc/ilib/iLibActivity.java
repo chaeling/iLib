@@ -70,7 +70,6 @@ public class iLibActivity extends Activity {
 			public void onClick(View v) {
 				listAdapter.clear();
 				String getSetNumberUrl = null;
-				
 				try {
 					String searchStr = searchContent.getText().toString();
 					if(!searchStr.equals("")) {
